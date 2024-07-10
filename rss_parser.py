@@ -9,11 +9,31 @@ def parse_rss_feed(url):
             "title": entry.title,
             "link": entry.link,
             "description": entry.description,
-            "content": entry.get("content:encoded", ""),
-            "image": entry.get("image", ""),
-            "media_content": entry.get("media_content", [{}])[0].get("url", ""),
-            "media_thumbnail": entry.get("media_thumbnail", [{}])[0].get("url", ""),
-            "enclosure": entry.get("enclosures", [{}])[0].get("url", ""),
+            "content": (
+                entry.get("content:encoded", "")
+                if "content:encoded" in entry
+                else entry.get("summary", "")
+            ),
+            "image": (
+                entry.get("media_thumbnail", [{"url": ""}])[0]["url"]
+                if "media_thumbnail" in entry
+                else entry.get("image", "")
+            ),
+            "media_content": (
+                entry.get("media_content", [{"url": ""}])[0]["url"]
+                if "media_content" in entry
+                else ""
+            ),
+            "media_thumbnail": (
+                entry.get("media_thumbnail", [{"url": ""}])[0]["url"]
+                if "media_thumbnail" in entry
+                else ""
+            ),
+            "enclosure": (
+                entry.get("enclosures", [{"url": ""}])[0]["url"]
+                if "enclosures" in entry
+                else ""
+            ),
             "pubDate": entry.published,
         }
         entries.append(entry_data)
