@@ -3,7 +3,9 @@
         "haberleri"
     ],
     "cSpell.words": [
+        "apscheduler",
         "dotenv",
-        "pyrebase"
+        "pyrebase",
+        "pytz"
     ]
 }

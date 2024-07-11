@@ -23,7 +23,7 @@ db = firebase.database()
 
 
 def push_to_firebase(data, category):
-    db.child("rss_feed").child(category).set(data)
+    db.child("news").child(category).set(data)
 
 
 if __name__ == "__main__":

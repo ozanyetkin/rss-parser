@@ -1,6 +1,5 @@
 import requests
 import re
-import unicodedata
 
 from bs4 import BeautifulSoup
 
@@ -11,7 +10,7 @@ def sanitize_category_name(name):
     # Remove diacritical marks (accents)
     # name = ''.join(c for c in name if not unicodedata.combining(c))
     # Replace non-alphanumeric characters with underscores
-    name = re.sub(r'\W+', '_', name)
+    name = re.sub(r"\W+", "_", name)
     return name.lower().replace("haberleri", "")
 
 
