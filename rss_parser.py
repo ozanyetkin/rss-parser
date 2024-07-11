@@ -1,6 +1,5 @@
 import feedparser
 
-
 def parse_rss_feed(url):
     feed = feedparser.parse(url)
     entries = []
@@ -31,7 +30,7 @@ def parse_rss_feed(url):
             ),
             "enclosure": (
                 entry.get("enclosures", [{"url": ""}])[0]["url"]
-                if "enclosures" in entry
+                if "enclosures" in entry and entry["enclosures"]
                 else ""
             ),
             "pubDate": entry.published,
